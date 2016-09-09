@@ -1,0 +1,452 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7C0AB2621D81A94D00D5CD89 /* BGImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7C0AB2611D81A94D00D5CD89 /* BGImage.gif */; };
+		7C0AB2661D81AFE400D5CD89 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0AB2651D81AFE400D5CD89 /* MainView.swift */; };
+		7C5AC7181D7EB93700DCB2AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC7171D7EB93700DCB2AF /* AppDelegate.swift */; };
+		7C5AC71A1D7EB93700DCB2AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC7191D7EB93700DCB2AF /* ViewController.swift */; };
+		7C5AC71D1D7EB93700DCB2AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C5AC71B1D7EB93700DCB2AF /* Main.storyboard */; };
+		7C5AC71F1D7EB93700DCB2AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C5AC71E1D7EB93700DCB2AF /* Assets.xcassets */; };
+		7C5AC7221D7EB93700DCB2AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C5AC7201D7EB93700DCB2AF /* LaunchScreen.storyboard */; };
+		7CCC89DB1D7FD3E4003FE1C5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89DA1D7FD3E4003FE1C5 /* CoreLocation.framework */; };
+		7CCC89DD1D7FD3F1003FE1C5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89DC1D7FD3F1003FE1C5 /* QuartzCore.framework */; };
+		7CCC89DF1D7FD3FB003FE1C5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89DE1D7FD3FB003FE1C5 /* OpenGLES.framework */; };
+		7CCC89E11D7FD405003FE1C5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89E01D7FD405003FE1C5 /* SystemConfiguration.framework */; };
+		7CCC89E31D7FD411003FE1C5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89E21D7FD411003FE1C5 /* CoreGraphics.framework */; };
+		7CCC89E51D7FD41A003FE1C5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89E41D7FD41A003FE1C5 /* Security.framework */; };
+		7CCC89E71D7FD427003FE1C5 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89E61D7FD427003FE1C5 /* libsqlite3.0.tbd */; };
+		7CCC89E91D7FD438003FE1C5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89E81D7FD438003FE1C5 /* CoreTelephony.framework */; };
+		7CCC89EB1D7FD443003FE1C5 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89EA1D7FD443003FE1C5 /* libstdc++.6.0.9.tbd */; };
+		7CCC89EF1D7FD597003FE1C5 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89EC1D7FD597003FE1C5 /* BaiduMapAPI_Base.framework */; };
+		7CCC89F01D7FD597003FE1C5 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89ED1D7FD597003FE1C5 /* BaiduMapAPI_Location.framework */; };
+		7CCC89F11D7FD597003FE1C5 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CCC89EE1D7FD597003FE1C5 /* BaiduMapAPI_Search.framework */; };
+		B64D0DB87C3D980C40C35024 /* Pods_JWWeather_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2551B0A031641DFF8452FE89 /* Pods_JWWeather_Swift.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2551B0A031641DFF8452FE89 /* Pods_JWWeather_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JWWeather_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4586FEE60E236426923ABAA4 /* Pods-JWWeather-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JWWeather-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-JWWeather-Swift/Pods-JWWeather-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		78816310EBE14CC68A21CB48 /* Pods-JWWeather-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JWWeather-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JWWeather-Swift/Pods-JWWeather-Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		7C0AB2611D81A94D00D5CD89 /* BGImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = BGImage.gif; sourceTree = "<group>"; };
+		7C0AB2651D81AFE400D5CD89 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		7C3ED3FF1D801A6A00795A33 /* JSONKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/JWWeather-Swift-crawijivrqzwlpbagdqpgsvtcshe/Build/Products/Debug-iphonesimulator/JSONKit/JSONKit.framework"; sourceTree = "<group>"; };
+		7C5AC7141D7EB93700DCB2AF /* JWWeather-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JWWeather-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C5AC7171D7EB93700DCB2AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7C5AC7191D7EB93700DCB2AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7C5AC71C1D7EB93700DCB2AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7C5AC71E1D7EB93700DCB2AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7C5AC7211D7EB93700DCB2AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7C5AC7231D7EB93700DCB2AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C5AC7291D7FAEB500DCB2AF /* JWWeather-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JWWeather-bridging-header.h"; sourceTree = "<group>"; };
+		7CCC89DA1D7FD3E4003FE1C5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7CCC89DC1D7FD3F1003FE1C5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7CCC89DE1D7FD3FB003FE1C5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		7CCC89E01D7FD405003FE1C5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7CCC89E21D7FD411003FE1C5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7CCC89E41D7FD41A003FE1C5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7CCC89E61D7FD427003FE1C5 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		7CCC89E81D7FD438003FE1C5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		7CCC89EA1D7FD443003FE1C5 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		7CCC89EC1D7FD597003FE1C5 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
+		7CCC89ED1D7FD597003FE1C5 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
+		7CCC89EE1D7FD597003FE1C5 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7C5AC7111D7EB93700DCB2AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CCC89EB1D7FD443003FE1C5 /* libstdc++.6.0.9.tbd in Frameworks */,
+				7CCC89E91D7FD438003FE1C5 /* CoreTelephony.framework in Frameworks */,
+				7CCC89E71D7FD427003FE1C5 /* libsqlite3.0.tbd in Frameworks */,
+				7CCC89E51D7FD41A003FE1C5 /* Security.framework in Frameworks */,
+				7CCC89E31D7FD411003FE1C5 /* CoreGraphics.framework in Frameworks */,
+				7CCC89E11D7FD405003FE1C5 /* SystemConfiguration.framework in Frameworks */,
+				7CCC89EF1D7FD597003FE1C5 /* BaiduMapAPI_Base.framework in Frameworks */,
+				7CCC89F01D7FD597003FE1C5 /* BaiduMapAPI_Location.framework in Frameworks */,
+				7CCC89F11D7FD597003FE1C5 /* BaiduMapAPI_Search.framework in Frameworks */,
+				7CCC89DF1D7FD3FB003FE1C5 /* OpenGLES.framework in Frameworks */,
+				7CCC89DD1D7FD3F1003FE1C5 /* QuartzCore.framework in Frameworks */,
+				7CCC89DB1D7FD3E4003FE1C5 /* CoreLocation.framework in Frameworks */,
+				B64D0DB87C3D980C40C35024 /* Pods_JWWeather_Swift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4E518FFB499DA4961223047D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7C3ED3FF1D801A6A00795A33 /* JSONKit.framework */,
+				7CCC89EA1D7FD443003FE1C5 /* libstdc++.6.0.9.tbd */,
+				7CCC89E81D7FD438003FE1C5 /* CoreTelephony.framework */,
+				7CCC89E61D7FD427003FE1C5 /* libsqlite3.0.tbd */,
+				7CCC89E41D7FD41A003FE1C5 /* Security.framework */,
+				7CCC89E21D7FD411003FE1C5 /* CoreGraphics.framework */,
+				7CCC89E01D7FD405003FE1C5 /* SystemConfiguration.framework */,
+				7CCC89DE1D7FD3FB003FE1C5 /* OpenGLES.framework */,
+				7CCC89DC1D7FD3F1003FE1C5 /* QuartzCore.framework */,
+				7CCC89DA1D7FD3E4003FE1C5 /* CoreLocation.framework */,
+				2551B0A031641DFF8452FE89 /* Pods_JWWeather_Swift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C0AB25E1D81A90900D5CD89 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				7C0AB2611D81A94D00D5CD89 /* BGImage.gif */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
+		7C5AC70B1D7EB93700DCB2AF = {
+			isa = PBXGroup;
+			children = (
+				7C5AC7161D7EB93700DCB2AF /* JWWeather-Swift */,
+				7C5AC7151D7EB93700DCB2AF /* Products */,
+				AF0A0CC1DBE74BAB8C0064ED /* Pods */,
+				4E518FFB499DA4961223047D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7C5AC7151D7EB93700DCB2AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7C5AC7141D7EB93700DCB2AF /* JWWeather-Swift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7C5AC7161D7EB93700DCB2AF /* JWWeather-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				7C0AB25E1D81A90900D5CD89 /* image */,
+				7C5AC7171D7EB93700DCB2AF /* AppDelegate.swift */,
+				7C5AC7191D7EB93700DCB2AF /* ViewController.swift */,
+				7C5AC71B1D7EB93700DCB2AF /* Main.storyboard */,
+				7C5AC71E1D7EB93700DCB2AF /* Assets.xcassets */,
+				7C5AC7201D7EB93700DCB2AF /* LaunchScreen.storyboard */,
+				7C5AC7231D7EB93700DCB2AF /* Info.plist */,
+				7C5AC7291D7FAEB500DCB2AF /* JWWeather-bridging-header.h */,
+				7C0AB2651D81AFE400D5CD89 /* MainView.swift */,
+			);
+			path = "JWWeather-Swift";
+			sourceTree = "<group>";
+		};
+		AF0A0CC1DBE74BAB8C0064ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7CCC89EC1D7FD597003FE1C5 /* BaiduMapAPI_Base.framework */,
+				7CCC89ED1D7FD597003FE1C5 /* BaiduMapAPI_Location.framework */,
+				7CCC89EE1D7FD597003FE1C5 /* BaiduMapAPI_Search.framework */,
+				78816310EBE14CC68A21CB48 /* Pods-JWWeather-Swift.debug.xcconfig */,
+				4586FEE60E236426923ABAA4 /* Pods-JWWeather-Swift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7C5AC7131D7EB93700DCB2AF /* JWWeather-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C5AC7261D7EB93700DCB2AF /* Build configuration list for PBXNativeTarget "JWWeather-Swift" */;
+			buildPhases = (
+				9F7A9FCBF3B0834B408BB4AE /* [CP] Check Pods Manifest.lock */,
+				7C5AC7101D7EB93700DCB2AF /* Sources */,
+				7C5AC7111D7EB93700DCB2AF /* Frameworks */,
+				7C5AC7121D7EB93700DCB2AF /* Resources */,
+				629EB9A7B4438FE41F081514 /* [CP] Embed Pods Frameworks */,
+				129181F36B837E5D84CAE9EC /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "JWWeather-Swift";
+			productName = "JWWeather-Swift";
+			productReference = 7C5AC7141D7EB93700DCB2AF /* JWWeather-Swift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7C5AC70C1D7EB93700DCB2AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "董佳旺";
+				TargetAttributes = {
+					7C5AC7131D7EB93700DCB2AF = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 55L89582PS;
+					};
+				};
+			};
+			buildConfigurationList = 7C5AC70F1D7EB93700DCB2AF /* Build configuration list for PBXProject "JWWeather-Swift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7C5AC70B1D7EB93700DCB2AF;
+			productRefGroup = 7C5AC7151D7EB93700DCB2AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7C5AC7131D7EB93700DCB2AF /* JWWeather-Swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7C5AC7121D7EB93700DCB2AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C5AC7221D7EB93700DCB2AF /* LaunchScreen.storyboard in Resources */,
+				7C5AC71F1D7EB93700DCB2AF /* Assets.xcassets in Resources */,
+				7C5AC71D1D7EB93700DCB2AF /* Main.storyboard in Resources */,
+				7C0AB2621D81A94D00D5CD89 /* BGImage.gif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		129181F36B837E5D84CAE9EC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JWWeather-Swift/Pods-JWWeather-Swift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		629EB9A7B4438FE41F081514 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JWWeather-Swift/Pods-JWWeather-Swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F7A9FCBF3B0834B408BB4AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7C5AC7101D7EB93700DCB2AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C5AC71A1D7EB93700DCB2AF /* ViewController.swift in Sources */,
+				7C0AB2661D81AFE400D5CD89 /* MainView.swift in Sources */,
+				7C5AC7181D7EB93700DCB2AF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7C5AC71B1D7EB93700DCB2AF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7C5AC71C1D7EB93700DCB2AF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7C5AC7201D7EB93700DCB2AF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7C5AC7211D7EB93700DCB2AF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7C5AC7241D7EB93700DCB2AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7C5AC7251D7EB93700DCB2AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7C5AC7271D7EB93700DCB2AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78816310EBE14CC68A21CB48 /* Pods-JWWeather-Swift.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "JWWeather-Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.dongjiawang.JWWeather-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JWWeather-Swift/JWWeather-bridging-header.h";
+			};
+			name = Debug;
+		};
+		7C5AC7281D7EB93700DCB2AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4586FEE60E236426923ABAA4 /* Pods-JWWeather-Swift.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "JWWeather-Swift/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.dongjiawang.JWWeather-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JWWeather-Swift/JWWeather-bridging-header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7C5AC70F1D7EB93700DCB2AF /* Build configuration list for PBXProject "JWWeather-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C5AC7241D7EB93700DCB2AF /* Debug */,
+				7C5AC7251D7EB93700DCB2AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7C5AC7261D7EB93700DCB2AF /* Build configuration list for PBXNativeTarget "JWWeather-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C5AC7271D7EB93700DCB2AF /* Debug */,
+				7C5AC7281D7EB93700DCB2AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7C5AC70C1D7EB93700DCB2AF /* Project object */;
+}
