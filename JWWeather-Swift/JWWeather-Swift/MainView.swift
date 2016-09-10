@@ -7,10 +7,7 @@
 //
 
 import Foundation
-import SwiftyJSON
-
-typealias refreshBlock=()->Void
-
+import SnapKit
 
 class MainView: UIView,UIScrollViewDelegate {
     
@@ -23,10 +20,8 @@ class MainView: UIView,UIScrollViewDelegate {
     var weatherLable: UILabel!
     var windLabel: UILabel!
     var refreshLabel:UILabel!
-    
-    var mainViewRefreshWeather:refreshBlock?
-    
-    
+        
+    var mainViewRefreshWeather:((Void)->(Void))?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,7 +31,11 @@ class MainView: UIView,UIScrollViewDelegate {
     func initSubViews() {
         BGImageView = UIImageView.init(frame: self.bounds)
         BGImageView.backgroundColor = UIColor.clearColor()
-        BGImageView.sd_setImageWithURL(NSURL.init(string: "http://cdn.ruguoapp.com/o_1as2f46mqr4d5b96la9aqb570.gif"))
+        if dayTime() {
+            BGImageView.image = UIImage.init(named: "BGImage-day")
+        } else {
+            BGImageView.image = UIImage.init(named: "BGImage-night")
+        }
         BGImageView.contentMode = UIViewContentMode.ScaleAspectFill
         BGImageView.userInteractionEnabled = true
         self.addSubview(BGImageView)
@@ -73,16 +72,22 @@ class MainView: UIView,UIScrollViewDelegate {
         nowWeather.textAlignment = NSTextAlignment.Center
         BGImageView.addSubview(nowWeather)
         nowWeather.snp_makeConstraints { (make) in
-            make.top.equalTo(cityName.snp_bottom).offset(20)
+            make.top.equalTo(cityName.snp_bottom).offset(40)
             make.centerX.equalTo(cityName.snp_centerX)
         }
         
-        weatherIcon = UIImageView.init(frame: CGRectMake(0, 0, 84, 60))
+        weatherIcon = UIImageView()
         weatherIcon.backgroundColor = UIColor.clearColor()
         weatherIcon.alpha = 0.8
         weatherIcon.contentMode = UIViewContentMode.ScaleToFill
         weatherIcon.center = BGImageView.center
         BGImageView.addSubview(weatherIcon)
+        weatherIcon.snp_makeConstraints { (make) in
+            make.centerX.equalTo(BGImageView.snp_centerX)
+            make.top.equalTo(nowWeather.snp_bottom).offset(40)
+            make.width.equalTo(84)
+            make.height.equalTo(60)
+        }
         
         temLabel = UILabel.init(frame: CGRectMake(0, 0, 200, 40))
         temLabel.backgroundColor = UIColor.clearColor()
@@ -91,7 +96,7 @@ class MainView: UIView,UIScrollViewDelegate {
         temLabel.textAlignment = NSTextAlignment.Center
         BGImageView.addSubview(temLabel)
         temLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(weatherIcon.snp_bottom).offset(30)
+            make.top.equalTo(weatherIcon.snp_bottom).offset(40)
             make.centerX.equalTo(BGImageView.snp_centerX)
         }
         
@@ -117,42 +122,26 @@ class MainView: UIView,UIScrollViewDelegate {
             make.centerX.equalTo(BGImageView.snp_centerX)
         }
     }
-
-    
-    /**
-     解析天气数据
-     
-     - parameter netData: 天气数据
-     */
-    func analyzingNetData(netData:NSData)  {
-        let json = JSON(data: netData)
-        let jsonDict:Dictionary = json.dictionary! as Dictionary
-        let jsonArr = jsonDict["results"]!
-        let weatherDataArr = jsonArr[0]
-        let weatherDict = weatherDataArr["weather_data"]
-        let weatherArr = weatherDict.array
-        let dayDict = weatherArr![0]
-        self.updateUIWithWeather(dayDict)
-    }
-    
+            
     /**
      根据数据更新UI
      
      - parameter weatherDict: 天气数据
      */
-    func updateUIWithWeather(weatherDict:JSON) {
+    func updateMainView(dayDataArr:NSMutableArray) {
+        let mainData = dayDataArr[0] as? WeatherMainModel
         
         dispatch_async(dispatch_get_main_queue()) {
-            self.temLabel.text = weatherDict["temperature"].string
-            self.nowWeather.text = weatherDict["date"].string
-            self.weatherLable.text = weatherDict["weather"].string
-            self.windLabel.text = weatherDict["wind"].string
+            self.temLabel.text = mainData?.temperature
+            self.nowWeather.text = mainData?.date
+            self.weatherLable.text = mainData?.weather
+            self.windLabel.text = mainData?.wind
         }
         var iconUrl:String?
         if dayTime() {
-            iconUrl = weatherDict["dayPictureUrl"].string
+            iconUrl = mainData?.dayPictureUrl
         } else {
-            iconUrl = weatherDict["nightPictureUrl"].string
+            iconUrl = mainData?.nightPictureUrl
         }
         weatherIcon.sd_setImageWithURL(NSURL.init(string: iconUrl!))
     }
@@ -191,7 +180,7 @@ class MainView: UIView,UIScrollViewDelegate {
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let scrollOffset = scrollView.contentOffset
         if (scrollOffset.y < -50) {
-            self.mainViewRefreshWeather?()
+            self.mainViewRefreshWeather!()
         }
         
         dispatch_async(dispatch_get_main_queue()) {
