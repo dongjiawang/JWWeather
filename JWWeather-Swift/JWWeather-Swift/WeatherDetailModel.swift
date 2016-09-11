@@ -10,7 +10,7 @@ import Foundation
 
 class WeatherDetailModel: NSObject {
     var tipt:String?
-    var des:String?
+    var zs:String?
     
     override init() {
         super.init()
@@ -18,7 +18,7 @@ class WeatherDetailModel: NSObject {
     
     func evaluationModel(weatherDic:NSDictionary) {
         tipt = weatherDic["tipt"] as? String
-        des = weatherDic["des"] as? String
+        zs = weatherDic["zs"] as? String
 
     }
 }

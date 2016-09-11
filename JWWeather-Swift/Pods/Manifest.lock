@@ -1,4 +1,5 @@
 PODS:
+  - GPUImage (0.1.7)
   - MBProgressHUD (1.0.0)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -6,15 +7,17 @@ PODS:
   - SnapKit (0.22.0)
 
 DEPENDENCIES:
+  - GPUImage
   - MBProgressHUD
   - SDWebImage
   - SnapKit
 
 SPEC CHECKSUMS:
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
 
-PODFILE CHECKSUM: 9507c00f69a800e689f522fa8410969af27995d0
+PODFILE CHECKSUM: 1b6b6ea771af439688ded2dff7fedc71a17d6f9b
 
 COCOAPODS: 1.1.0.beta.2

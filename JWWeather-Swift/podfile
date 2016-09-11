@@ -3,5 +3,6 @@ use_frameworks!
 target "JWWeather-Swift" do
 	pod 'SDWebImage'
 	pod 'MBProgressHUD'
-	pod 'SnapKit' 
+	pod 'SnapKit'
+	pod 'GPUImage' 
 end

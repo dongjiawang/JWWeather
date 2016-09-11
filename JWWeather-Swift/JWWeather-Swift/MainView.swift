@@ -13,14 +13,14 @@ class MainView: UIView,UIScrollViewDelegate {
     
     var BGScroll: UIScrollView!
     var BGImageView: UIImageView!
-    var cityName: UILabel!
-    var nowWeather: UILabel!
-    var weatherIcon: UIImageView!
-    var temLabel: UILabel!
-    var weatherLable: UILabel!
-    var windLabel: UILabel!
     var refreshLabel:UILabel!
-        
+    var cityName: UILabel!
+    var weatherView:TodayView!
+    var otherWeatherView:OtherDayView!
+    var blurView:UIImageView!
+    
+    
+    
     var mainViewRefreshWeather:((Void)->(Void))?
     
     override init(frame: CGRect) {
@@ -31,96 +31,46 @@ class MainView: UIView,UIScrollViewDelegate {
     func initSubViews() {
         BGImageView = UIImageView.init(frame: self.bounds)
         BGImageView.backgroundColor = UIColor.clearColor()
-        if dayTime() {
-            BGImageView.image = UIImage.init(named: "BGImage-day")
-        } else {
-            BGImageView.image = UIImage.init(named: "BGImage-night")
-        }
         BGImageView.contentMode = UIViewContentMode.ScaleAspectFill
         BGImageView.userInteractionEnabled = true
         self.addSubview(BGImageView)
+        
+        blurView = UIImageView.init(frame: BGImageView.bounds)
+        blurView.alpha = 0
+        blurView.backgroundColor = UIColor.init(white: 0.8, alpha: 1.0)
+        blurView.contentMode = UIViewContentMode.ScaleAspectFill
+        BGImageView.addSubview(blurView)
         
         BGScroll = UIScrollView.init(frame: BGImageView.bounds)
         BGScroll.backgroundColor = UIColor.clearColor()
         BGScroll.showsVerticalScrollIndicator = false
         BGScroll.delegate = self
-        BGScroll.contentSize = CGSizeMake(0, self.frame.size.height + 40)
+        BGScroll.contentSize = CGSizeMake(0, BGImageView.frame.height*2)
         BGImageView.addSubview(BGScroll)
         
-        refreshLabel = UILabel.init(frame: CGRectMake(0, -40, self.frame.size.width, 40))
+        refreshLabel = UILabel.init(frame: CGRectMake(0, -40, self.frame.width, 40))
         refreshLabel.backgroundColor = UIColor.clearColor()
-        refreshLabel.textColor = UIColor.blackColor()
+        refreshLabel.textColor = UIColor.whiteColor()
         refreshLabel.font = UIFont.systemFontOfSize(20)
         refreshLabel.textAlignment = NSTextAlignment.Center
         self.addSubview(refreshLabel)
         
-        cityName = UILabel.init(frame: CGRectMake(0, 0, 200, 40))
-        cityName.backgroundColor = UIColor.clearColor()
-        cityName.font = UIFont.boldSystemFontOfSize(25)
-        cityName.textColor = UIColor.whiteColor()
-        cityName.textAlignment = NSTextAlignment.Center
-        BGImageView.addSubview(cityName)
-        cityName.snp_makeConstraints { (make) in
-            make.top.equalTo(64)
-            make.centerX.equalTo(BGImageView.snp_centerX)
+        weatherView = TodayView.init(frame: BGImageView.bounds)
+        BGScroll.addSubview(weatherView)
+        
+        otherWeatherView = OtherDayView.init(frame: CGRectMake(0, BGImageView.frame.height + BGImageView.frame.origin.y, BGImageView.frame.width, BGImageView.frame.height))
+        BGScroll.addSubview(otherWeatherView)
+    }
+    
+    func setBGimage() {
+        let tool = JWTool()
+        if tool.dayTime() {
+            BGImageView.image = UIImage.init(named: "BGImage-day")
+        } else {
+            BGImageView.image = UIImage.init(named: "BGImage-night")
         }
         
-        nowWeather = UILabel.init(frame: CGRectMake(0, 0, 250, 40))
-        nowWeather.backgroundColor = UIColor.clearColor()
-        nowWeather.font = UIFont.systemFontOfSize(16)
-        nowWeather.textColor = UIColor.whiteColor()
-        nowWeather.textAlignment = NSTextAlignment.Center
-        BGImageView.addSubview(nowWeather)
-        nowWeather.snp_makeConstraints { (make) in
-            make.top.equalTo(cityName.snp_bottom).offset(40)
-            make.centerX.equalTo(cityName.snp_centerX)
-        }
-        
-        weatherIcon = UIImageView()
-        weatherIcon.backgroundColor = UIColor.clearColor()
-        weatherIcon.alpha = 0.8
-        weatherIcon.contentMode = UIViewContentMode.ScaleToFill
-        weatherIcon.center = BGImageView.center
-        BGImageView.addSubview(weatherIcon)
-        weatherIcon.snp_makeConstraints { (make) in
-            make.centerX.equalTo(BGImageView.snp_centerX)
-            make.top.equalTo(nowWeather.snp_bottom).offset(40)
-            make.width.equalTo(84)
-            make.height.equalTo(60)
-        }
-        
-        temLabel = UILabel.init(frame: CGRectMake(0, 0, 200, 40))
-        temLabel.backgroundColor = UIColor.clearColor()
-        temLabel.font = UIFont.systemFontOfSize(25)
-        temLabel.textColor = UIColor.whiteColor()
-        temLabel.textAlignment = NSTextAlignment.Center
-        BGImageView.addSubview(temLabel)
-        temLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(weatherIcon.snp_bottom).offset(40)
-            make.centerX.equalTo(BGImageView.snp_centerX)
-        }
-        
-        weatherLable = UILabel.init(frame: CGRectMake(0, 0, 200, 40))
-        weatherLable.backgroundColor = UIColor.clearColor()
-        weatherLable.font = UIFont.systemFontOfSize(25)
-        weatherLable.textColor = UIColor.whiteColor()
-        weatherLable.textAlignment = NSTextAlignment.Center
-        BGImageView.addSubview(weatherLable)
-        weatherLable.snp_makeConstraints { (make) in
-            make.centerX.equalTo(BGImageView.snp_centerX)
-            make.top.equalTo(temLabel.snp_bottom).offset(20)
-        }
-        
-        windLabel = UILabel.init(frame: CGRectMake(0, 0, 200, 40))
-        windLabel.backgroundColor = UIColor.clearColor()
-        windLabel.font = UIFont.systemFontOfSize(20)
-        windLabel.textColor = UIColor.whiteColor()
-        windLabel.textAlignment = NSTextAlignment.Center
-        BGImageView.addSubview(windLabel)
-        windLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(weatherLable.snp_bottom).offset(20)
-            make.centerX.equalTo(BGImageView.snp_centerX)
-        }
+        blurView.image = tool.createBlurBackground(BGImageView.image!, blurRadius: 10.0)
     }
             
     /**
@@ -128,39 +78,15 @@ class MainView: UIView,UIScrollViewDelegate {
      
      - parameter weatherDict: 天气数据
      */
-    func updateMainView(dayDataArr:NSMutableArray) {
+    func updateMainView(dayDataArr:NSMutableArray, weatherDetailData:NSMutableArray) {
         let mainData = dayDataArr[0] as? WeatherMainModel
+        weatherView.updateMainViewWeather(mainData!)
+        weatherView.updateMainViewIndexLabel(weatherDetailData)
+        otherWeatherView.initSingleWeather(dayDataArr)
         
-        dispatch_async(dispatch_get_main_queue()) {
-            self.temLabel.text = mainData?.temperature
-            self.nowWeather.text = mainData?.date
-            self.weatherLable.text = mainData?.weather
-            self.windLabel.text = mainData?.wind
-        }
-        var iconUrl:String?
-        if dayTime() {
-            iconUrl = mainData?.dayPictureUrl
-        } else {
-            iconUrl = mainData?.nightPictureUrl
-        }
-        weatherIcon.sd_setImageWithURL(NSURL.init(string: iconUrl!))
+        otherWeatherView.frame = CGRectMake(0, weatherView.frame.height, otherWeatherView.frame.width, otherWeatherView.frame.height)
+        BGScroll.contentSize = CGSizeMake(0, weatherView.frame.height + otherWeatherView.frame.height)
     }
-    
-    /**
-     是否是白天
-     
-     - returns:
-     */
-    func dayTime() -> Bool {
-        let calendar = NSCalendar.currentCalendar()
-        let hour = calendar.component(NSCalendarUnit.Hour, fromDate: NSDate())
-        if hour >= 18 || hour <= 06 {
-            return false
-        } else {
-            return true
-        }
-    }
-
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if (scrollView.contentOffset.y <= -50) {
@@ -171,24 +97,30 @@ class MainView: UIView,UIScrollViewDelegate {
         }
         
         if scrollView.contentOffset.y <= 0 {
-            BGImageView.frame = CGRectMake(0, -scrollView.contentOffset.y, BGImageView.frame.size.width, BGImageView.frame.size.height)
-            refreshLabel.frame = CGRectMake(0, -(scrollView.contentOffset.y + 40), refreshLabel.frame.size.width, refreshLabel.frame.size.height)
+            refreshLabel.frame = CGRectMake(0, -(scrollView.contentOffset.y + 40), refreshLabel.frame.width, refreshLabel.frame.height)
         }
         
+        var scrollScale = scrollView.contentOffset.y / scrollView.frame.height
+        
+        if scrollScale <= 0 {
+            scrollScale = 0
+            return
+        } else if scrollScale >= 0.9 {
+            scrollScale = 0.9
+            return
+        }
+        blurView.alpha = scrollScale
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let scrollOffset = scrollView.contentOffset
         if (scrollOffset.y < -50) {
             self.mainViewRefreshWeather!()
-        }
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+            dispatch_async(dispatch_get_main_queue()) {
+                scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+            }
         }
     }
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

@@ -20,9 +20,7 @@ class WeatherRequest: NSObject {
     
     func requestWeather(cityName:String)  {
         let location = cityName.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-        let url_0 = "http://api.map.baidu.com/telematics/v3/weather?location="
-        let url_1 = "&output=json&ak=C3d2845360d091a5e8f42f605b7472ea"
-        let urlStr = url_0 + location + url_1
+        let urlStr = ("http://api.map.baidu.com/telematics/v3/weather?location=") + location + ("&output=json&ak=C3d2845360d091a5e8f42f605b7472ea")
         
         let url:NSURL = NSURL.init(string: urlStr)!
         let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()

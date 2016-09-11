@@ -29,8 +29,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>我们需要使用你的地理位置信息</string>
 	<key>NSLocationUsageDescription</key>
 	<string>我们需要使用你的地理位置信息</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

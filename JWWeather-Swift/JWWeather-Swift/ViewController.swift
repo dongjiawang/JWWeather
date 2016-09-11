@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         locService.locationSucess = {(city)->Void in
             self.cityName = city
             self.requestWeather.requestWeather(self.cityName)
-            self.subViews!.cityName.text = self.cityName
+            self.subViews?.weatherView.cityName.text = self.cityName
         }
         locService.locationFail = {
             self.hideWaitHUD()
@@ -44,7 +44,9 @@ class ViewController: UIViewController {
         requestWeather.requestWeatherSuccess = {(weatherData) in
             self.hideWaitHUD()
             self.analyzingNetData(weatherData)
-            self.subViews?.updateMainView(self.dayDataArr)
+            dispatch_async(dispatch_get_main_queue(), { 
+              self.subViews?.updateMainView(self.dayDataArr, weatherDetailData: self.weatherDetailArr)  
+            })
         }
         requestWeather.requestWeatherFail = {
             self.showAlertCtrl("获取天气信息失败")
@@ -56,6 +58,11 @@ class ViewController: UIViewController {
             self.requestWeather.requestWeather(self.cityName)
         }
         self.view.addSubview(subViews!)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        subViews!.setBGimage()
     }
     
     /**
@@ -70,6 +77,7 @@ class ViewController: UIViewController {
         let resultArray = jsonStr?.objectForKey("results") as? NSArray
         let weatherDetailDic = resultArray![0] as? NSDictionary
         let indexArr = weatherDetailDic!["index"] as? NSArray
+        weatherDetailArr.removeAllObjects()
         for indexDic in indexArr! {
             let indexModel = WeatherDetailModel()
             indexModel.evaluationModel(indexDic as! NSDictionary)
@@ -77,6 +85,7 @@ class ViewController: UIViewController {
         }
         
         let weatherDataArr = weatherDetailDic!["weather_data"] as? NSArray
+        dayDataArr.removeAllObjects()
         for weatherDic in weatherDataArr! {
             let weatherModel = WeatherMainModel()
             weatherModel.evaluationModel(weatherDic as! NSDictionary)

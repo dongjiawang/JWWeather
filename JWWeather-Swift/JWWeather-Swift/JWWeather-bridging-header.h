@@ -14,5 +14,6 @@
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <GPUImage/GPUImage.h>
 
 #endif /* JWWeather_bridging_header_h */
