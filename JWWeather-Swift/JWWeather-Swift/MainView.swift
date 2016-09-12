@@ -14,12 +14,11 @@ class MainView: UIView,UIScrollViewDelegate {
     var BGScroll: UIScrollView!
     var BGImageView: UIImageView!
     var refreshLabel:UILabel!
+    var refreshImage:UIImageView!
     var cityName: UILabel!
     var weatherView:TodayView!
     var otherWeatherView:OtherDayView!
     var blurView:UIImageView!
-    
-    
     
     var mainViewRefreshWeather:((Void)->(Void))?
     
@@ -48,12 +47,29 @@ class MainView: UIView,UIScrollViewDelegate {
         BGScroll.contentSize = CGSizeMake(0, BGImageView.frame.height*2)
         BGImageView.addSubview(BGScroll)
         
-        refreshLabel = UILabel.init(frame: CGRectMake(0, -40, self.frame.width, 40))
+        refreshLabel = UILabel()
         refreshLabel.backgroundColor = UIColor.clearColor()
         refreshLabel.textColor = UIColor.whiteColor()
         refreshLabel.font = UIFont.systemFontOfSize(20)
         refreshLabel.textAlignment = NSTextAlignment.Center
         self.addSubview(refreshLabel)
+        refreshLabel.snp_makeConstraints { (make) in
+            make.top.equalTo(-40)
+            make.centerX.equalTo(self.snp_centerX)
+            make.width.equalTo(130)
+            make.height.equalTo(40)
+        }
+        
+        refreshImage = UIImageView()
+        refreshImage.backgroundColor = UIColor.clearColor()
+        refreshImage.image = UIImage.init(named: "refreshImage")
+        self.addSubview(refreshImage)
+        refreshImage.snp_makeConstraints { (make) in
+            make.centerY.equalTo(refreshLabel.snp_centerY)
+            make.right.equalTo(refreshLabel.snp_left)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+        }
         
         weatherView = TodayView.init(frame: BGImageView.bounds)
         BGScroll.addSubview(weatherView)
@@ -89,6 +105,7 @@ class MainView: UIView,UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+
         if (scrollView.contentOffset.y <= -50) {
             refreshLabel.text = "松开刷新";
         }else{
@@ -97,10 +114,23 @@ class MainView: UIView,UIScrollViewDelegate {
         }
         
         if scrollView.contentOffset.y <= 0 {
-            refreshLabel.frame = CGRectMake(0, -(scrollView.contentOffset.y + 40), refreshLabel.frame.width, refreshLabel.frame.height)
+            refreshLabel.snp_updateConstraints(closure: { (make) in
+                make.top.equalTo(-(scrollView.contentOffset.y + 40))
+            })
+            
+            refreshImage.snp_updateConstraints(closure: { (make) in
+                make.top.equalTo(refreshLabel.snp_top)
+            })
         }
         
         var scrollScale = scrollView.contentOffset.y / scrollView.frame.height
+        
+        if scrollView.contentOffset.y%4 == 0 {
+            UIView.beginAnimations(nil, context: nil)
+            UIView.setAnimationDuration(0.5)
+            refreshImage.transform = CGAffineTransformRotate(refreshImage.transform, CGFloat(M_PI/2))
+            UIView.commitAnimations()
+        }
         
         if scrollScale <= 0 {
             scrollScale = 0

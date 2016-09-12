@@ -32,7 +32,7 @@ class OtherDayView: UIView {
     }
     
     func initSingleWeather(weatherArr:NSMutableArray) {
-        var singleViewTop:CGFloat = 60
+        var singleViewTop:CGFloat = 80
         for index in 0...weatherArr.count - 2 {
             let weatherSingleView = weatherView.init(frame: CGRectMake(0, singleViewTop, self.frame.width, 180))
             self.addSubview(weatherSingleView)
