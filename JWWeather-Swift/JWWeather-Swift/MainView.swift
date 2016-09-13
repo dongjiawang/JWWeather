@@ -113,7 +113,7 @@ class MainView: UIView,UIScrollViewDelegate {
             refreshLabel.text = "下拉刷新";
         }
         
-        if scrollView.contentOffset.y <= 0 {
+        if scrollView.contentOffset.y < 0 {
             refreshLabel.snp_updateConstraints(closure: { (make) in
                 make.top.equalTo(-(scrollView.contentOffset.y + 40))
             })
@@ -121,16 +121,13 @@ class MainView: UIView,UIScrollViewDelegate {
             refreshImage.snp_updateConstraints(closure: { (make) in
                 make.top.equalTo(refreshLabel.snp_top)
             })
+            
+            self.startAnimation()
+        } else {
+            refreshImage.layer.removeAnimationForKey("rotationAnimation")
         }
         
         var scrollScale = scrollView.contentOffset.y / scrollView.frame.height
-        
-        if scrollView.contentOffset.y%4 == 0 {
-            UIView.beginAnimations(nil, context: nil)
-            UIView.setAnimationDuration(0.5)
-            refreshImage.transform = CGAffineTransformRotate(refreshImage.transform, CGFloat(M_PI/2))
-            UIView.commitAnimations()
-        }
         
         if scrollScale <= 0 {
             scrollScale = 0
@@ -140,6 +137,15 @@ class MainView: UIView,UIScrollViewDelegate {
             return
         }
         blurView.alpha = scrollScale
+    }
+    
+    func startAnimation() {
+        let rotationAnimation = CABasicAnimation.init(keyPath: "transform.rotation.z")
+        rotationAnimation.toValue = NSNumber.init(float: Float(M_PI * 2.0))
+        rotationAnimation.duration = 0.5
+        rotationAnimation.repeatCount = 1000
+        rotationAnimation.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseIn)
+        refreshImage.layer.addAnimation(rotationAnimation, forKey: "rotationAnimation")
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {

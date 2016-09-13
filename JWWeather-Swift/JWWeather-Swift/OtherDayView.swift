@@ -86,8 +86,8 @@ class weatherView: UIView {
         self.addSubview(weatherIcon)
         weatherIcon.snp_makeConstraints { (make) in            
             make.centerX.equalTo(self.snp_centerX).offset(-52)
-            make.width.equalTo(84)
-            make.height.equalTo(60)
+            make.width.equalTo(50)
+            make.height.equalTo(38)
         }
         
         weatherLabel.backgroundColor = UIColor.clearColor()

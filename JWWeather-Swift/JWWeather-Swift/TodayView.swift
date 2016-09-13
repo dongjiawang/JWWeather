@@ -55,8 +55,8 @@ class TodayView: UIView {
         weatherIcon.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.snp_centerX)
             make.top.equalTo(nowWeather.snp_bottom).offset(40)
-            make.width.equalTo(84)
-            make.height.equalTo(60)
+            make.width.equalTo(50)
+            make.height.equalTo(38)
         }
         
         weatherLable.backgroundColor = UIColor.clearColor()

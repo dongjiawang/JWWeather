@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     let locService = LoactionService()
     var requestWeather = WeatherRequest()
@@ -58,11 +58,26 @@ class ViewController: UIViewController {
             self.requestWeather.requestWeather(self.cityName)
         }
         self.view.addSubview(subViews!)
+        
+        let settingBtn = UIButton.init()
+        settingBtn.backgroundColor = UIColor.blueColor()
+        settingBtn .addTarget(self, action: #selector(clickedSettingBtn), forControlEvents: .TouchUpInside)
+        self.view.addSubview(settingBtn)
+        settingBtn.snp_makeConstraints { (make) in
+            make.top.equalTo(30)
+            make.left.equalTo(30)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         subViews!.setBGimage()
+    }
+    
+    func clickedSettingBtn() {
+        
     }
     
     /**

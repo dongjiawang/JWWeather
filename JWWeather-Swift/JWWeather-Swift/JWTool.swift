@@ -37,6 +37,10 @@ class JWTool: NSObject {
         let blurFilter = GPUImageGaussianBlurFilter()
         blurFilter.blurRadiusInPixels = blurRadius
         let outputImage = blurFilter.imageByFilteringImage(image)
-        return outputImage
+        if outputImage != nil {
+            return outputImage
+        } else {
+            return image
+        }
     }
 }

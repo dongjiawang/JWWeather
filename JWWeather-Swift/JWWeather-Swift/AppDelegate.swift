@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate {
         
         self.window = UIWindow()
         self.window?.backgroundColor = UIColor.whiteColor()
-        self.window?.rootViewController = ViewController()        
+        self.window?.rootViewController = MainViewController()
         self.window?.makeKeyAndVisible()
         
         return true
