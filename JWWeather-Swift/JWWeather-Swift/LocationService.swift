@@ -11,7 +11,7 @@ import Foundation
 class LoactionService: NSObject,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate {
     let locationService = BMKLocationService()
     var locationStart:(()->(Void))?
-    var locationSucess:((city:String)->(Void))?
+    var locationSucess:((_ city:String)->(Void))?
     var locationFail:(()->(Void))?
     
     
@@ -32,7 +32,7 @@ class LoactionService: NSObject,BMKLocationServiceDelegate,BMKGeoCodeSearchDeleg
      
      - parameter userLocation: 位置
      */
-    func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
+    func didUpdate(_ userLocation: BMKUserLocation!) {
         locationStart!()
         if userLocation.location != nil {
             locationService .stopUserLocationService()
@@ -40,7 +40,7 @@ class LoactionService: NSObject,BMKLocationServiceDelegate,BMKGeoCodeSearchDeleg
         }
     }
     
-    func didFailToLocateUserWithError(error: NSError!) {
+    func didFailToLocateUserWithError(_ error: Error!) {
         locationService .stopUserLocationService()
         locationFail!()
     }
@@ -49,7 +49,7 @@ class LoactionService: NSObject,BMKLocationServiceDelegate,BMKGeoCodeSearchDeleg
      
      - parameter location: 定位到的location
      */
-    func getCityName(location:BMKUserLocation) {
+    func getCityName(_ location:BMKUserLocation) {
         
         let codeOption = BMKReverseGeoCodeOption()
         codeOption.reverseGeoPoint.latitude = location.location.coordinate.latitude
@@ -68,9 +68,9 @@ class LoactionService: NSObject,BMKLocationServiceDelegate,BMKGeoCodeSearchDeleg
      - parameter result:   解析结果
      - parameter error:    错误内容
      */
-    func onGetReverseGeoCodeResult(searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
+    func onGetReverseGeoCodeResult(_ searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
         if error == BMK_SEARCH_NO_ERROR {
-            locationSucess!(city: result.addressDetail.city)
+            locationSucess!(result.addressDetail.city)
         }
     }
     

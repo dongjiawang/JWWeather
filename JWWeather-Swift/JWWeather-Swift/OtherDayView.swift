@@ -18,23 +18,23 @@ class OtherDayView: UIView {
         super.init(frame: frame)
         
         tipLabel = UILabel.init()
-        tipLabel.backgroundColor = UIColor.clearColor()
+        tipLabel.backgroundColor = UIColor.clear
         tipLabel.text = "未来三天天气"
-        tipLabel.textColor = UIColor.whiteColor()
-        tipLabel.font = UIFont.systemFontOfSize(22)
-        tipLabel.textAlignment = NSTextAlignment.Center
+        tipLabel.textColor = UIColor.white
+        tipLabel.font = UIFont.systemFont(ofSize: 22)
+        tipLabel.textAlignment = NSTextAlignment.center
         self.addSubview(tipLabel)
-        tipLabel.snp_makeConstraints { (make) in
+        tipLabel.snp.makeConstraints { (make) in
             make.top.equalTo(40)
             make.width.equalTo(frame.width)
             make.height.equalTo(40)
         }
     }
     
-    func initSingleWeather(weatherArr:NSMutableArray) {
+    func initSingleWeather(_ weatherArr:NSMutableArray) {
         var singleViewTop:CGFloat = 80
         for index in 0...weatherArr.count - 2 {
-            let weatherSingleView = weatherView.init(frame: CGRectMake(0, singleViewTop, self.frame.width, 180))
+            let weatherSingleView = weatherView.init(frame: CGRect(x: 0, y: singleViewTop, width: self.frame.width, height: 180))
             self.addSubview(weatherSingleView)
             let weatherModel = weatherArr[index + 1] as! WeatherMainModel
             weatherSingleView.initSubLabels(weatherModel)
@@ -42,7 +42,7 @@ class OtherDayView: UIView {
             singleViewTop = CGFloat(180*(index + 1)) + 80
         }
     
-        self.frame = CGRectMake(0, self.frame.origin.y, self.frame.width, singleViewTop+20)
+        self.frame = CGRect(x: 0, y: self.frame.origin.y, width: self.frame.width, height: singleViewTop+20)
     }
   
     
@@ -66,67 +66,64 @@ class weatherView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func initSubLabels(weatherModel:WeatherMainModel) {
-        dateLabel.backgroundColor = UIColor.clearColor()
-        dateLabel.textColor = UIColor.whiteColor()
-        dateLabel.font = UIFont.systemFontOfSize(24)
-        dateLabel.textAlignment = NSTextAlignment.Center
+    func initSubLabels(_ weatherModel:WeatherMainModel) {
+        dateLabel.backgroundColor = UIColor.clear
+        dateLabel.textColor = UIColor.white
+        dateLabel.font = UIFont.systemFont(ofSize: 24)
+        dateLabel.textAlignment = NSTextAlignment.center
         self.addSubview(dateLabel)
-        dateLabel.snp_makeConstraints { (make) in
+        dateLabel.snp.makeConstraints { (make) in
             make.top.equalTo(20)
-            make.centerX.equalTo(self.snp_centerX)
+            make.centerX.equalTo(self.snp.centerX)
             make.width.equalTo(self.frame.width)
             make.height.equalTo(40)
         }
 
         
-        weatherIcon.backgroundColor = UIColor.clearColor()
-        weatherIcon.contentMode = UIViewContentMode.ScaleToFill
+        weatherIcon.backgroundColor = UIColor.clear
+        weatherIcon.contentMode = UIViewContentMode.scaleToFill
         weatherIcon.alpha = 0.8
         self.addSubview(weatherIcon)
-        weatherIcon.snp_makeConstraints { (make) in            
-            make.centerX.equalTo(self.snp_centerX).offset(-52)
+        weatherIcon.snp.makeConstraints { (make) in
+            make.top.equalTo(dateLabel.snp.bottom).offset(50)
+            make.centerX.equalTo(self.snp.centerX).offset(-52)
             make.width.equalTo(50)
             make.height.equalTo(38)
         }
         
-        weatherLabel.backgroundColor = UIColor.clearColor()
-        weatherLabel.textColor = UIColor.whiteColor()
-        weatherLabel.font = UIFont.systemFontOfSize(16)
-        weatherLabel.textAlignment = NSTextAlignment.Left
+        weatherLabel.backgroundColor = UIColor.clear
+        weatherLabel.textColor = UIColor.white
+        weatherLabel.font = UIFont.systemFont(ofSize: 16)
+        weatherLabel.textAlignment = NSTextAlignment.left
         self.addSubview(weatherLabel)
-        weatherLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(dateLabel.snp_bottom).offset(10)
-            make.left.equalTo(weatherIcon.snp_right).offset(20)
-            make.right.equalTo(dateLabel.snp_right)
+        weatherLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(dateLabel.snp.bottom).offset(10)
+            make.left.equalTo(weatherIcon.snp.right).offset(20)
+            make.right.equalTo(dateLabel.snp.right)
             make.height.equalTo(40)
         }
         
-        windLabel.backgroundColor = UIColor.clearColor()
-        windLabel.textColor = UIColor.whiteColor()
-        windLabel.textAlignment = NSTextAlignment.Left
-        windLabel.font = UIFont.systemFontOfSize(16)
+        windLabel.backgroundColor = UIColor.clear
+        windLabel.textColor = UIColor.white
+        windLabel.textAlignment = NSTextAlignment.left
+        windLabel.font = UIFont.systemFont(ofSize: 16)
         self.addSubview(windLabel)
-        windLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(weatherLabel.snp_bottom)
-            make.left.equalTo(weatherLabel.snp_left)
-            make.right.equalTo(weatherLabel.snp_right)
+        windLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(weatherLabel.snp.bottom)
+            make.left.equalTo(weatherLabel.snp.left)
+            make.right.equalTo(weatherLabel.snp.right)
             make.height.equalTo(40)
         }
         
-        weatherIcon.snp_updateConstraints { (make) in
-            make.centerY.equalTo(windLabel.snp_centerY)
-        }
-        
-        temperatureLabel.backgroundColor = UIColor.clearColor()
-        temperatureLabel.textColor = UIColor.whiteColor()
-        temperatureLabel.font = UIFont.systemFontOfSize(16)
-        temperatureLabel.textAlignment = NSTextAlignment.Left
+        temperatureLabel.backgroundColor = UIColor.clear
+        temperatureLabel.textColor = UIColor.white
+        temperatureLabel.font = UIFont.systemFont(ofSize: 16)
+        temperatureLabel.textAlignment = NSTextAlignment.left
         self.addSubview(temperatureLabel)
-        temperatureLabel.snp_makeConstraints { (make) in
-            make.top.equalTo(windLabel.snp_bottom)
-            make.left.equalTo(windLabel.snp_left)
-            make.right.equalTo(windLabel.snp_right)
+        temperatureLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(windLabel.snp.bottom)
+            make.left.equalTo(windLabel.snp.left)
+            make.right.equalTo(windLabel.snp.right)
             make.height.equalTo(40)
         }
         
@@ -135,6 +132,6 @@ class weatherView: UIView {
         weatherLabel.text = weatherModel.weather
         windLabel.text = weatherModel.wind
         temperatureLabel.text = weatherModel.temperature
-        weatherIcon.sd_setImageWithURL(NSURL.init(string: weatherModel.dayPictureUrl!))
+        weatherIcon.sd_setImage(with: URL.init(string: weatherModel.dayPictureUrl!))
     }
 }

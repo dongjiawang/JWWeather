@@ -16,8 +16,8 @@ class JWTool: NSObject {
      - returns: 白天或者黑夜
      */
     func dayTime() -> Bool {
-        let calendar = NSCalendar.currentCalendar()
-        let hour = calendar.component(NSCalendarUnit.Hour, fromDate: NSDate())
+        let calendar = Calendar.current
+        let hour = (calendar as NSCalendar).component(NSCalendar.Unit.hour, from: Date())
         if hour >= 18 || hour <= 06 {
             return false
         } else {
@@ -33,12 +33,12 @@ class JWTool: NSObject {
      
      - returns: 模糊图
      */
-    func createBlurBackground(image:UIImage,blurRadius:CGFloat) ->UIImage{
+    func createBlurBackground(_ image:UIImage,blurRadius:CGFloat) ->UIImage{
         let blurFilter = GPUImageGaussianBlurFilter()
         blurFilter.blurRadiusInPixels = blurRadius
-        let outputImage = blurFilter.imageByFilteringImage(image)
+        let outputImage = blurFilter.image(byFilteringImage: image)
         if outputImage != nil {
-            return outputImage
+            return outputImage!
         } else {
             return image
         }

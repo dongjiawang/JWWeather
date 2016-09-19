@@ -16,7 +16,7 @@ class WeatherDetailModel: NSObject {
         super.init()
     }
     
-    func evaluationModel(weatherDic:NSDictionary) {
+    func evaluationModel(_ weatherDic:NSDictionary) {
         tipt = weatherDic["tipt"] as? String
         zs = weatherDic["zs"] as? String
 

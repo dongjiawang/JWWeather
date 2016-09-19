@@ -22,7 +22,7 @@ class WeatherMainModel: NSObject {
         super.init()
     }
     
-    func evaluationModel(weatherDic:NSDictionary) {
+    func evaluationModel(_ weatherDic:NSDictionary) {
         date = weatherDic["date"] as? String
         dayPictureUrl = weatherDic["dayPictureUrl"] as? String
         nightPictureUrl = weatherDic["nightPictureUrl"] as? String

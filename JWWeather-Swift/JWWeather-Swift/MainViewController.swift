@@ -43,9 +43,9 @@ class MainViewController: UIViewController {
         
         requestWeather.requestWeatherSuccess = {(weatherData) in
             self.hideWaitHUD()
-            self.analyzingNetData(weatherData)
-            dispatch_async(dispatch_get_main_queue(), { 
-              self.subViews?.updateMainView(self.dayDataArr, weatherDetailData: self.weatherDetailArr)  
+            self.analyzingNetData(weatherData as Data)
+            DispatchQueue.main.async(execute: { 
+              self.subViews?.updateMainView(self.dayDataArr, weatherDetailData: self.weatherDetailArr)
             })
         }
         requestWeather.requestWeatherFail = {
@@ -60,10 +60,10 @@ class MainViewController: UIViewController {
         self.view.addSubview(subViews!)
         
         let settingBtn = UIButton.init()
-        settingBtn.backgroundColor = UIColor.blueColor()
-        settingBtn .addTarget(self, action: #selector(clickedSettingBtn), forControlEvents: .TouchUpInside)
+        settingBtn.backgroundColor = UIColor.blue
+        settingBtn .addTarget(self, action: #selector(clickedSettingBtn), for: .touchUpInside)
         self.view.addSubview(settingBtn)
-        settingBtn.snp_makeConstraints { (make) in
+        settingBtn.snp.makeConstraints { (make) in
             make.top.equalTo(30)
             make.left.equalTo(30)
             make.width.equalTo(40)
@@ -71,7 +71,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subViews!.setBGimage()
     }
@@ -85,26 +85,28 @@ class MainViewController: UIViewController {
      
      - parameter netData: 天气数据
      */
-    func analyzingNetData(netData:NSData)  {
+    func analyzingNetData(_ netData:Data)  {
         
-        let jsonStr = try? NSJSONSerialization
-            .JSONObjectWithData(netData, options:NSJSONReadingOptions.MutableContainers)
-        let resultArray = jsonStr?.objectForKey("results") as? NSArray
-        let weatherDetailDic = resultArray![0] as? NSDictionary
-        let indexArr = weatherDetailDic!["index"] as? NSArray
-        weatherDetailArr.removeAllObjects()
-        for indexDic in indexArr! {
-            let indexModel = WeatherDetailModel()
-            indexModel.evaluationModel(indexDic as! NSDictionary)
-            weatherDetailArr.addObject(indexModel)
-        }
-        
-        let weatherDataArr = weatherDetailDic!["weather_data"] as? NSArray
-        dayDataArr.removeAllObjects()
-        for weatherDic in weatherDataArr! {
-            let weatherModel = WeatherMainModel()
-            weatherModel.evaluationModel(weatherDic as! NSDictionary)
-            dayDataArr.addObject(weatherModel)
+        let jsonStr = try? JSONSerialization
+            .jsonObject(with: netData, options:JSONSerialization.ReadingOptions.mutableContainers)
+        if let dictionary = jsonStr as? [String: Any] {
+            let resultArray = dictionary["results"] as? NSMutableArray
+            let weatherDetailDic = resultArray?.firstObject as? NSDictionary
+            let indexArr = weatherDetailDic?["index"] as? NSArray
+            weatherDetailArr.removeAllObjects()
+            for indexDic in indexArr! {
+                let indexModel = WeatherDetailModel()
+                indexModel.evaluationModel(indexDic as! NSDictionary)
+                weatherDetailArr.add(indexModel)
+            }
+            
+            let weatherDataArr = weatherDetailDic!["weather_data"] as? NSArray
+            dayDataArr.removeAllObjects()
+            for weatherDic in weatherDataArr! {
+                let weatherModel = WeatherMainModel()
+                weatherModel.evaluationModel(weatherDic as! NSDictionary)
+                dayDataArr.add(weatherModel)
+            }
         }
     }
 
@@ -114,31 +116,31 @@ class MainViewController: UIViewController {
      
      - parameter message: 信息内容
      */
-    func showAlertCtrl(message:String) {
+    func showAlertCtrl(_ message:String) {
         if (alertCtrl != nil) {
             return
         }
-        alertCtrl = UIAlertController.init(title: "提示", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alertCtrl!.addAction(UIAlertAction.init(title: "重新获取", style: UIAlertActionStyle.Default, handler: { (alert) in
-            dispatch_async(dispatch_get_main_queue(), {
+        alertCtrl = UIAlertController.init(title: "提示", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertCtrl!.addAction(UIAlertAction.init(title: "重新获取", style: UIAlertActionStyle.default, handler: { (alert) in
+            DispatchQueue.main.async(execute: {
                 self.locService.locationServiceStart()
                 self.alertCtrl = nil
             })
         }))
-        alertCtrl!.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alertCtrl!, animated: true, completion: nil)
+        alertCtrl!.addAction(UIAlertAction.init(title: "取消", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alertCtrl!, animated: true, completion: nil)
     }
     
     func showWaitHUD() {
-        self.watiHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        self.watiHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
 //        self.watiHUD!.dimBackground = true
-        self.watiHUD!.color = UIColor.blackColor()
+        self.watiHUD!.color = UIColor.black
         self.watiHUD?.removeFromSuperViewOnHide = true
     }
     
     func hideWaitHUD() {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.watiHUD?.hideAnimated(true)
+        DispatchQueue.main.async {
+            self.watiHUD?.hide(animated: true)
             self.watiHUD = nil
         }
     }

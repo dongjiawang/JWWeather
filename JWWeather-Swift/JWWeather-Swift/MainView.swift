@@ -19,6 +19,8 @@ class MainView: UIView,UIScrollViewDelegate {
     var weatherView:TodayView!
     var otherWeatherView:OtherDayView!
     var blurView:UIImageView!
+    var animationing:Bool = false
+    
     
     var mainViewRefreshWeather:((Void)->(Void))?
     
@@ -29,44 +31,44 @@ class MainView: UIView,UIScrollViewDelegate {
     
     func initSubViews() {
         BGImageView = UIImageView.init(frame: self.bounds)
-        BGImageView.backgroundColor = UIColor.clearColor()
-        BGImageView.contentMode = UIViewContentMode.ScaleAspectFill
-        BGImageView.userInteractionEnabled = true
+        BGImageView.backgroundColor = UIColor.clear
+        BGImageView.contentMode = UIViewContentMode.scaleAspectFill
+        BGImageView.isUserInteractionEnabled = true
         self.addSubview(BGImageView)
         
         blurView = UIImageView.init(frame: BGImageView.bounds)
         blurView.alpha = 0
         blurView.backgroundColor = UIColor.init(white: 0.8, alpha: 1.0)
-        blurView.contentMode = UIViewContentMode.ScaleAspectFill
+        blurView.contentMode = UIViewContentMode.scaleAspectFill
         BGImageView.addSubview(blurView)
         
         BGScroll = UIScrollView.init(frame: BGImageView.bounds)
-        BGScroll.backgroundColor = UIColor.clearColor()
+        BGScroll.backgroundColor = UIColor.clear
         BGScroll.showsVerticalScrollIndicator = false
         BGScroll.delegate = self
-        BGScroll.contentSize = CGSizeMake(0, BGImageView.frame.height*2)
+        BGScroll.contentSize = CGSize(width: 0, height: BGImageView.frame.height*2)
         BGImageView.addSubview(BGScroll)
         
         refreshLabel = UILabel()
-        refreshLabel.backgroundColor = UIColor.clearColor()
-        refreshLabel.textColor = UIColor.whiteColor()
-        refreshLabel.font = UIFont.systemFontOfSize(20)
-        refreshLabel.textAlignment = NSTextAlignment.Center
+        refreshLabel.backgroundColor = UIColor.clear
+        refreshLabel.textColor = UIColor.white
+        refreshLabel.font = UIFont.systemFont(ofSize: 20)
+        refreshLabel.textAlignment = NSTextAlignment.center
         self.addSubview(refreshLabel)
-        refreshLabel.snp_makeConstraints { (make) in
+        refreshLabel.snp.makeConstraints { (make) in
             make.top.equalTo(-40)
-            make.centerX.equalTo(self.snp_centerX)
+            make.centerX.equalTo(self.snp.centerX)
             make.width.equalTo(130)
             make.height.equalTo(40)
         }
         
         refreshImage = UIImageView()
-        refreshImage.backgroundColor = UIColor.clearColor()
+        refreshImage.backgroundColor = UIColor.clear
         refreshImage.image = UIImage.init(named: "refreshImage")
         self.addSubview(refreshImage)
-        refreshImage.snp_makeConstraints { (make) in
-            make.centerY.equalTo(refreshLabel.snp_centerY)
-            make.right.equalTo(refreshLabel.snp_left)
+        refreshImage.snp.makeConstraints { (make) in
+            make.centerY.equalTo(refreshLabel.snp.centerY)
+            make.right.equalTo(refreshLabel.snp.left)
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
@@ -74,7 +76,7 @@ class MainView: UIView,UIScrollViewDelegate {
         weatherView = TodayView.init(frame: BGImageView.bounds)
         BGScroll.addSubview(weatherView)
         
-        otherWeatherView = OtherDayView.init(frame: CGRectMake(0, BGImageView.frame.height + BGImageView.frame.origin.y, BGImageView.frame.width, BGImageView.frame.height))
+        otherWeatherView = OtherDayView.init(frame: CGRect(x: 0, y: BGImageView.frame.height + BGImageView.frame.origin.y, width: BGImageView.frame.width, height: BGImageView.frame.height))
         BGScroll.addSubview(otherWeatherView)
     }
     
@@ -94,17 +96,17 @@ class MainView: UIView,UIScrollViewDelegate {
      
      - parameter weatherDict: 天气数据
      */
-    func updateMainView(dayDataArr:NSMutableArray, weatherDetailData:NSMutableArray) {
-        let mainData = dayDataArr[0] as? WeatherMainModel
+    func updateMainView(_ dayDataArr:NSMutableArray, weatherDetailData:NSMutableArray) {
+        let mainData = dayDataArr.firstObject as? WeatherMainModel
         weatherView.updateMainViewWeather(mainData!)
         weatherView.updateMainViewIndexLabel(weatherDetailData)
         otherWeatherView.initSingleWeather(dayDataArr)
         
-        otherWeatherView.frame = CGRectMake(0, weatherView.frame.height, otherWeatherView.frame.width, otherWeatherView.frame.height)
-        BGScroll.contentSize = CGSizeMake(0, weatherView.frame.height + otherWeatherView.frame.height)
+        otherWeatherView.frame = CGRect(x: 0, y: weatherView.frame.height, width: otherWeatherView.frame.width, height: otherWeatherView.frame.height)
+        BGScroll.contentSize = CGSize(width: 0, height: weatherView.frame.height + otherWeatherView.frame.height)
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
         if (scrollView.contentOffset.y <= -50) {
             refreshLabel.text = "松开刷新";
@@ -114,17 +116,15 @@ class MainView: UIView,UIScrollViewDelegate {
         }
         
         if scrollView.contentOffset.y < 0 {
-            refreshLabel.snp_updateConstraints(closure: { (make) in
+            refreshLabel.snp.updateConstraints({ (make) in
                 make.top.equalTo(-(scrollView.contentOffset.y + 40))
             })
-            
-            refreshImage.snp_updateConstraints(closure: { (make) in
-                make.top.equalTo(refreshLabel.snp_top)
-            })
-            
-            self.startAnimation()
+            if !animationing {
+             self.startAnimation()
+            }
         } else {
-            refreshImage.layer.removeAnimationForKey("rotationAnimation")
+            refreshImage.layer.removeAnimation(forKey: "rotationAnimation")
+            animationing = false
         }
         
         var scrollScale = scrollView.contentOffset.y / scrollView.frame.height
@@ -140,20 +140,21 @@ class MainView: UIView,UIScrollViewDelegate {
     }
     
     func startAnimation() {
+        animationing = true
         let rotationAnimation = CABasicAnimation.init(keyPath: "transform.rotation.z")
-        rotationAnimation.toValue = NSNumber.init(float: Float(M_PI * 2.0))
+        rotationAnimation.toValue = NSNumber.init(value: Float(M_PI * 2.0) as Float)
         rotationAnimation.duration = 0.5
         rotationAnimation.repeatCount = 1000
-        rotationAnimation.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseIn)
-        refreshImage.layer.addAnimation(rotationAnimation, forKey: "rotationAnimation")
+        rotationAnimation.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionLinear)
+        refreshImage.layer.add(rotationAnimation, forKey: "rotationAnimation")
     }
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let scrollOffset = scrollView.contentOffset
         if (scrollOffset.y < -50) {
             self.mainViewRefreshWeather!()
-            dispatch_async(dispatch_get_main_queue()) {
-                scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+            DispatchQueue.main.async {
+                scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
             }
         }
     }

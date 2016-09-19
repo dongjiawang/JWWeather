@@ -230,6 +230,7 @@
 					7C5AC7131D7EB93700DCB2AF = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 55L89582PS;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -430,6 +431,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.dongjiawang.JWWeather-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "JWWeather-Swift/JWWeather-bridging-header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -449,6 +451,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.dongjiawang.JWWeather-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "JWWeather-Swift/JWWeather-bridging-header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
